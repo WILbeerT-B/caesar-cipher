@@ -8,7 +8,7 @@ def caesar_cipher(string, shift)
       char = char
     
     else
-      char_ord = char.ord + factor
+      char_ord = char.ord + shift
       if (char_ord > 90 && char_ord < 97)
         char_ord = 65
         char_ord += 1
@@ -25,4 +25,4 @@ def caesar_cipher(string, shift)
   end
 end
 
-caesar_cipher("Omae wa mou shindeiru. -NANI!?!!", 21)
+caesar_cipher("What a string!", 5)
