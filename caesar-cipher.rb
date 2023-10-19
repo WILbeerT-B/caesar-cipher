@@ -2,27 +2,34 @@
 
 def caesar_cipher(string, shift)
   
+  result = ''
+  big_ord = (65..90)
+  small_ord = (97..122)
+
   string.each_char do |char|
     
-    if ((char.ord < 65 || char.ord > 90) && (char.ord < 97 || char.ord > 122))
-      char = char
     
-    else
-      char_ord = char.ord + shift
-      if (char_ord > 90 && char_ord < 97)
-        char_ord = 65
-        char_ord += 1
-      
-      elsif (char_ord > 122)
-        char_ord = 97
-        char_ord += 1
+    char_ord = char.ord
+  
+    if big_ord.include?(char_ord)
+      char_ord += shift
+      if char_ord > big_ord.last
+        char_ord = big_ord.first + (shift - (big_ord.last - char.ord + 1))
       end
-      
-      char = char_ord.chr
-      #binding.pry
+    
+    elsif small_ord.include?(char_ord)
+      char_ord += shift 
+      if char_ord > small_ord.last
+        char_ord = small_ord.first + (shift - (small_ord.last - char.ord + 1))
+      end
     end
-    puts char
+    char = char_ord.chr
+    result += char
+    #binding.pry
   end
+  puts result
 end
+
+
 
 caesar_cipher("What a string!", 5)
